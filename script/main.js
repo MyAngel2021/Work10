@@ -69,7 +69,7 @@ async function fetchNewData(idProduct) {
                                     <br>
                                     <p id="products_description" class="products_description">${data.description}</p>
                                     <br>
-                                    <button class="products_del_button" onclick="delProduct(${data.id})>Удалить товар</button>              
+                                    <button class="products_del_button" onclick="delProduct(${data.id})">Удалить товар</button>              
           `;
     /*  console.log(li); */
     products_list.appendChild(li);
