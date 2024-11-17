@@ -1,126 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>work10_asin</title>
-    <link rel="stylesheet" href="CSS/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="CSS/style.css" />
+  </head>
+  <body>
     <header class="header">
-        <div class="container">
-            <div class="header__inner">
-                <a href="#" class="logo">
-                    <img src="./images/logo.jpg" alt="logo">
-                </a>
-                <nav class="nav">
-                    <ul class="nav__menu">
-                        <li class="nav__menu__item"><a href="#">Home</a></li>
-                        <li class="nav__menu__item"><a href="#">Shop</a></li>
-                        <li class="nav__menu__item"><a href="#">Our Story</a></li>
-                        <li class="nav__menu__item"><a href="#">Blog</a></li>
-                        <li class="nav__menu__item"><a href="#">Contact Us</a></li>
-                    </ul>
-                </nav>
-                <ul class="user-actions">
-                    <li class="user-actions__item"> <a class="user-actions" href=""> 
-                        <img src="images/find.svg" alt="find" >
-                    </a></li>
-                    <li class="user-actions__item"> <a class="user-actions" href=""> 
-                        <img src="images/live.jpg" alt="live" >
-                    </a></li>
-                    <li class="user-actions__item"> <a class="user-actions" href=""> 
-                        <img src="images/basket.svg" alt="basket" >
-                    </a></li>
-                    <li class="user-actions__item">
-                        <button class="login" href="login.html">Login</button>
-                    </li>
-                </ul>
-            </div>
+      <div class="container">
+        <div class="header__inner">
+          <a href="#" class="logo">
+            <img src="./images/logo.jpg" alt="logo" />
+          </a>
+          <nav class="nav">
+            <ul class="nav__menu">
+              <li class="nav__menu__item"><a href="#">Home</a></li>
+              <li class="nav__menu__item"><a href="#">Shop</a></li>
+              <li class="nav__menu__item"><a href="#">Our Story</a></li>
+              <li class="nav__menu__item"><a href="#">Blog</a></li>
+              <li class="nav__menu__item"><a href="#">Contact Us</a></li>
+            </ul>
+          </nav>
+          <ul class="user-actions">
+            <li class="user-actions__item">
+              <a class="user-actions" href="">
+                <img src="images/find.svg" alt="find" />
+              </a>
+            </li>
+            <li class="user-actions__item">
+              <a class="user-actions" href="">
+                <img src="images/live.jpg" alt="live" />
+              </a>
+            </li>
+            <li class="user-actions__item">
+              <a class="user-actions" href="">
+                <img src="images/basket.svg" alt="basket" />
+              </a>
+            </li>
+            <li class="user-actions__item">
+              <button class="login" href="login.html">Login</button>
+            </li>
+          </ul>
         </div>
+      </div>
     </header>
     <main class="main">
-        <div class="container">
-
-            <div class="main_body">
-                <ul class="main_body_list">
-                    <li class="main_body_item">
-                        <nav class="products_add">
-                           
-                            <form action="" method="post">
-                                <ul class="products_add_list">
-                                    <li class="products_add_item" >
-                                        <label for="products_title">Название товара</label>
-                                    </li>    
-                                    <li class="products_add_item">    
-                                        <input type= "text"  id="products_title" name="products_title" placeholder="Введите Название товара">
-                                    </li>
-                                    <li class="products_add_item">
-                                        <label for="products_price">Цена товара </label>
-                                    </li>    
-                                    <li class="products_add_item">        
-                                        <input type="number"  name="products_price" id="products_price" placeholder="Введите цену товара">
-                                    </li>
-                                    <li class="products_add_item">
-                                        <label for="products_description">Описание товара</label>
-                                    </li>    
-                                    <li class="products_add_item">    
-                                            <textarea name="products_description_txt" 
-                                            id="products_description_txt" cols="30" rows="10">
+      <div class="container">
+        <div class="main_body">
+          <ul class="main_body_list">
+            <li class="main_body_item">
+              <nav class="products_add">
+                <form action="" method="post">
+                  <ul class="products_add_list">
+                    <li class="products_add_item">
+                      <label for="products_title">Название товара</label>
+                    </li>
+                    <li class="products_add_item">
+                      <input
+                        type="text"
+                        id="products_title"
+                        name="products_title"
+                        placeholder="Введите Название товара"
+                      />
+                    </li>
+                    <li class="products_add_item">
+                      <label for="products_price">Цена товара </label>
+                    </li>
+                    <li class="products_add_item">
+                      <input
+                        type="number"
+                        name="products_price"
+                        id="products_price"
+                        placeholder="Введите цену товара"
+                      />
+                    </li>
+                    <li class="products_add_item">
+                      <label for="products_description">Описание товара</label>
+                    </li>
+                    <li class="products_add_item">
+                      <textarea
+                        name="products_description_txt"
+                        id="products_description_txt"
+                        cols="30"
+                        rows="10"
+                      >
                                                 Введите описание товара
-                                            </textarea>
-                                        
-                                    </li>
-                                    <li class="products_add_item">
-                                        <input type="text"  
-                                            name="products_category" 
-                                            placeholder="Выберите категорию"
-                                            list="all_products_category"
-                                            id="products_category"
-                                        >
-                                        <datalist id="all_products_category">
-                                            <option value="electronics">electronics</option>
-                                            <option value="jewelery">jewelery</option>
-                                            <option value="men's clothing">men's clothing</option>
-                                            <option value="women's clothing">women's clothing</option>
-                                        </datalist>
-                                    </li>
-                                    
-                                    <li class="products_add_item">
-                                        <button class="products_add_button">Добавить товар</button>
-                                    </li>
-                                </ul>
-                            </form>
-                        </nav>
+                                            </textarea
+                      >
                     </li>
-                    <li class="main_body_item">
-                       
-                       
-                       
-                       
-                       <form action="" method="post">
-                            <select class="categaries__list" id="categaries__list" name="categaries__list">
-                                <option value="all">Все категории</option>
-                             </select>
-                             <br><br>
-                             <button type="button" class="buttonFiltr" onclick="filtrProduct(this.form)">Выбрать товары по фильтру</button>     
-                        </form> 
+                    <li class="products_add_item">
+                      <input
+                        type="text"
+                        name="products_category"
+                        placeholder="Выберите категорию"
+                        list="all_products_category"
+                        id="products_category"
+                      />
+                      <datalist id="all_products_category">
+                        <option value="electronics">electronics</option>
+                        <option value="jewelery">jewelery</option>
+                        <option value="men's clothing">men's clothing</option>
+                        <option value="women's clothing">
+                          women's clothing
+                        </option>
+                      </datalist>
                     </li>
 
-                    <li class="main_body_item"> 
-
-                        <div class="products" id="products">
-                            <ul class="products_list" id="products_list">
-                               
-                            </ul>
-                            <br>
-                            <button class="main_button_load" >Загрузить еще</button>
-                        </div>
+                    <li class="products_add_item">
+                      <button class="products_add_button">
+                        Добавить товар
+                      </button>
                     </li>
-                </ul>
-            </div>
-    </div>
+                  </ul>
+                </form>
+              </nav>
+            </li>
+            <li class="main_body_item">
+              <form action="" method="post">
+                <select
+                  class="categaries__list"
+                  id="categaries__list"
+                  name="categaries__list"
+                >
+                  <option value="all">Все категории</option>
+                </select>
+                <br /><br />
+                <button
+                  type="button"
+                  class="buttonFiltr"
+                  onclick="filtrProduct(this.form)"
+                >
+                  Выбрать товары по фильтру
+                </button>
+              </form>
+            </li>
+
+            <li class="main_body_item">
+              <div class="products" id="products">
+                <ul class="products_list" id="products_list"></ul>
+                <br />
+                <button class="main_button_load">Загрузить еще</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
     </main>
     <script src="script/main.js"></script>
-</body>
+  </body>
 </html>
