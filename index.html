@@ -41,34 +41,12 @@
     </header>
     <main class="main">
         <div class="container">
-             <!--
-            <a class="main__link" href="#"> Shop > All Product</a>
-          
-            <button class="main_button_add" id="main_button_add">добавление товара</button>
-           --> 
+
             <div class="main_body">
                 <ul class="main_body_list">
                     <li class="main_body_item">
                         <nav class="products_add">
-                            <!--
-                            <label class="hamb" for="side-menu">
-                                <div class="hamb-line_x">
-                                  <svg
-                                    width="21"
-                                    height="21"
-                                    viewBox="0 0 21 21"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                  >
-                                    <path
-                                      d="M1.5055 1.49071C0.767231 2.22637 0.767231 3.41911 1.5055 4.15477L8.28311 10.9084L1.5055 17.662C0.767228 18.3977 0.76723 19.5904 1.5055 20.3261C2.24378 21.0617 3.44075 21.0617 4.17902 20.3261L10.9566 13.5725L17.7342 20.3261C18.4725 21.0617 19.6695 21.0617 20.4077 20.3261C21.146 19.5904 21.146 18.3977 20.4077 17.662L13.6301 10.9084L20.4077 4.1548C21.146 3.41914 21.146 2.2264 20.4077 1.49074C19.6694 0.755077 18.4725 0.755077 17.7342 1.49074L10.9566 8.24434L4.17903 1.49071C3.44075 0.755049 2.24378 0.755049 1.5055 1.49071Z"
-                                      fill="#754E29"
-                                    />
-                                  </svg>
-                                </div>
-                              </label>
-                              <br>
-                            -->
+                           
                             <form action="" method="post">
                                 <ul class="products_add_list">
                                     <li class="products_add_item" >
@@ -116,44 +94,22 @@
                         </nav>
                     </li>
                     <li class="main_body_item">
-                       <h4 class="main_body__title">Product Categaries</h4> 
+                       
+                       
+                       
+                       
                        <form action="" method="post">
-                            <ul class="categaries__list">
-                            <li class="categaries__item">
-                                <label >
-                                    <input type="radio" name="categaries" value="electronics" >
-                                    electronics 
-                                </label>    
-                            </li>
-                            <li class="categaries__item">
-                                <label >
-                                    <input type="radio" name="categaries" value="jewelery" class="categaries__item__chec">
-                                    jewelery
-                                </label>
-                            </li>
-                            <li class="categaries__item">
-                                <label >
-                                    <input type="radio" name="categaries" value="men's clothing">
-                                    men's clothing
-                                </label>
-                                                         
-                            </li>
-                            <li class="categaries__item">
-                                <label >
-                                    <input type="radio" name="categaries" value="women's clothing" >
-                                    women's clothing
-                                </label>
-                            </li>
-                            <li class="categaries__item">
-                                <button class="main_button_filtr"> Фильтрация по категории</button>
-                            </li>
-                            </ul>
+                            <select class="categaries__list" id="categaries__list" name="categaries__list">
+                                <option value="all">Все категории</option>
+                             </select>
+                             <br><br>
+                             <button type="button" class="buttonFiltr" onclick="filtrProduct(this.form)">Выбрать товары по фильтру</button>     
                         </form> 
                     </li>
 
                     <li class="main_body_item"> 
 
-                        <div class="products">
+                        <div class="products" id="products">
                             <ul class="products_list" id="products_list">
                                
                             </ul>

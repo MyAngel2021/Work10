@@ -1,23 +1,22 @@
-let products ={}
-let productsArray = new Array;
-let n = 7;
+
+const lim = 6;
+let n = lim + 1 ;
 document.addEventListener("DOMContentLoaded", () =>
 {
-    fetcApphData();
-
-}
-);
-
-async function fetchData() {
-    const list = document.querySelector('.products_item');
-    console.log (list);
-/*    if(list!="null") {
-        list.remove();
+    const data = fetcApphData();
+    if (data) {
+      /*  console.log(data); */
+        getFiltrProduct();
+       
+    } else {
+        console.log ("Ошибка");
     }
-        */
-    fetcApphData();
-}
-async function fetcApphData(limit =6) {
+    
+    
+    
+});
+/* загрузка 6 товаров  */
+async function fetcApphData(limit = lim) {
     const products_list = document.getElementById('products_list');
     try {
         let response = await fetch(`https://fakestoreapi.com/products?limit=${limit}`)
@@ -26,10 +25,11 @@ async function fetcApphData(limit =6) {
         }
         let data = await response.json();
 
-            console.log(data);
+          /*  console.log(data); */
          for ( let item of data) { 
             const li =document.createElement('li');
             li.className = 'products_item';
+            li.id='products_item';
             li.innerHTML =
            `                        <p  class="products_id" >${item.id}</p>   
                                     <p id="products_category" class="products_category">${item.category}</p>
@@ -41,36 +41,30 @@ async function fetcApphData(limit =6) {
                                     <p id="products_description" class="products_description">${item.description}</p>
 
                                     <br>
-                                    <button class="products_del_button">Удалить товар</button>              
+                                    <button class="products_del_button" onclick="delProduct(${item.id})">Удалить товар</button>              
           `;
-          console.log(li);
+        /*  console.log(li); */
           products_list.appendChild(li);
         } 
         return data;
         } catch(error) {
-        console.error('Ошибка:', error);
+        console.error('Ошибка загрузки товара:', error);
         }
 }
-/* добавление товара */ 
-const title = document.querySelector(`#products_title`);
-const price = document.querySelector(`#products_price`);
-const description = document.querySelector(`#products_description_txt`);
-const category = document.querySelector(`#products_category`);
-const products_add_button = document.querySelector(`.products_add_button`);
+/* загрузка 1 товара */ 
 
-async function fetchNewData(idNewProduct) {
+
+async function fetchNewData(idProduct) {
     try {
-       /* console.log(idNewProduct);*/
-        let response = await fetch(`https://fakestoreapi.com/products/${idNewProduct}`)
+       /* console.log(idProduct);*/
+        let response = await fetch(`https://fakestoreapi.com/products/${idProduct}`)
         if (!response.ok) {
             throw new Error('Oшибка: ${response.status}');
         }
         let data = await response.json();
-
-            console.log(data);
-         
             const li =document.createElement('li');
             li.className = 'products_item';
+            li.id='products_item';
             li.innerHTML =
            `                        <p  class="products_id" >${data.id}</p>   
                                     <p id="products_category" class="products_category">${data.category}</p>
@@ -82,22 +76,27 @@ async function fetchNewData(idNewProduct) {
                                     <p id="products_description" class="products_description">${data.description}</p>
 
                                     <br>
-                                    <button class="products_del_button">Удалить товар</button>              
+                                    <button class="products_del_button" onclick="delProduct(${data.id})>Удалить товар</button>              
           `;
-          console.log(li);
+        /*  console.log(li); */
           products_list.appendChild(li);
      
         return data;
         } catch(error) {
-        console.error('Ошибка:', error);
+        console.error('Ошибка загрузки товара:', error);
         }
 }
 
-
+/*  добавление товара */
+const title = document.querySelector(`#products_title`);
+const price = document.querySelector(`#products_price`);
+const description = document.querySelector(`#products_description_txt`);
+const category = document.querySelector(`#products_category`);
+const products_add_button = document.querySelector(`.products_add_button`);
 
 async function addProduct () {
-   /* console.log ("нажата кнопка добавить товар"); */
-    console.log (title.value,price.value,description.value,category.value); 
+   /* console.log ("нажата кнопка добавить товар"); 
+    console.log (title.value,price.value,description.value,category.value);  */
     try {
         const response = await fetch(`https://fakestoreapi.com/products` , {
             method: "POST",
@@ -112,12 +111,12 @@ async function addProduct () {
         const newProduct = await response.json();
         console.log(newProduct.id);
         
-        alert("товар добавлен успешно!");
+        alert(`товар ${title.value} с ценой ${price.value} в катерогию ${category.value} добавлен успешно!`);
         title.value='';
         price.value=0.0;
         description.value='описание товара';
         category.value='';
-        
+        location.reload();
         fetchNewData(newProduct.id); // Обновление списка товаров
         
                
@@ -144,27 +143,62 @@ products_add_button.addEventListener(`click`,(event) => {
 })  
 
 
-/*  фильтрация по категории */ 
+/*  фильтрация по категории  читаем категории из базы */ 
 
-const buttonFiltr = document.querySelector('.main_button_filtr');
-async function filtrProduct(category) {
-   
+const buttonFiltr = document.querySelector('.buttonFiltr');
+
+async function getFiltrProduct() {
+    let category_chicdren = document.getElementById('categaries__list');
+
+    try {
+        let response = await fetch(`https://fakestoreapi.com/products/categories`)
+        if (!response.ok) {
+            throw new Error('Oшибка: ${response.status}');
+        }
+        let data = await response.json();
+          /*  console.log(data); */
+         for ( let item of data) { 
+            const option = document.createElement('option');
+            option.className='categaries__item';
+            option.value=item;
+            option.innerHTML =
+                                ` ${item}`;
+          category_chicdren.appendChild(option);
+        } 
+      
+        return data;
+        } catch(error) {
+        console.error('Ошибка загрузки категории товаров:', error);
+        }
+
+}
+/*  фильтрация по категории  товаров из базы */ 
+async function filtrProduct(f) {
+    
+ /*   console.log(f); */
+    let n = f.categaries__list.selectedIndex;
+    if (n) {
+        let categ = f.categaries__list.options[n].value;
+        
+        const products_div = document.getElementById('products');
         const products_list = document.getElementById('products_list');
-        const children = document.getElementsByClassName('products_item');
-       /* children.remove();*/
-        console.log ( children);
-       
+   
         try {
-            let response = await fetch(`https://fakestoreapi.com/products/category/${category.value}`)
+            let response = await fetch(`https://fakestoreapi.com/products/category/${categ}`)
             if (!response.ok) {
                 throw new Error('Oшибка: ${response.status}');
             }
             let data = await response.json();
-    
                 console.log(data);
+                products_list.remove();
+            const ul = document.createElement('ul');
+            ul.className = 'products_list';
+            ul.id = 'products_list';
+            products_div.prepend(ul);    
              for ( let item of data) { 
                 const li =document.createElement('li');
                 li.className='products_item';
+                li.id='products_item';
                 li.innerHTML =
                `                        <p  class="products_id" >${item.id}</p>   
                                         <p id="products_category" class="products_category">${item.category}</p>
@@ -176,61 +210,46 @@ async function filtrProduct(category) {
                                         <p id="products_description" class="products_description">${item.description}</p>
     
                                         <br>
-                                        <button class="products_del_button">Удалить товар</button>              
+                                        <button class="products_del_button" onclick="delProduct(${item.id})>Удалить товар</button>              
               `;
-              console.log(li);
+             /* console.log(li); */
              
-              products_list.appendChild(li);
+              ul.appendChild(li);
             } 
             const productId = document.querySelector('.products_id');
 
             return data;
             } catch(error) {
-            console.error('Ошибка:', error);
+            console.error('Ошибка загрузки товаров по категории:', error);
             }
+        }       
 }
-console.log(buttonFiltr);
-buttonFiltr.addEventListener(`click`,(event) => {
-    const form = document.forms[1];
-    const category = form.elements.categaries;
-    event.preventDefault();
-    console.log (form,category.value);   
-    filtrProduct(category);
-})  
+
+
 
 /* загрузить еще */
 const main_button_load = document.querySelector(".main_button_load");
-console.log (main_button_load);
 
 main_button_load.addEventListener(`click`,(event) => {
     event.preventDefault();
-    for (let i=n; i<n+6; i++)
+    for (let i=n; i<n+lim; i++)
     { 
         fetchNewData(i);
    };
-    n=n+6;
+    n=n+lim;
 })
-/*  удаление товара */
 
-const productId = document.querySelector('.products_id');
-const products_del_button = document.querySelector('.products_del_button');
-console.log (productId,products_del_button);
+/*  удаление товара */
 async function delProduct(productId) {
+    console.log(productId);
     try {
-        const response = await fetch(`https://fakestoreapi.com/products/${productId.value}` , {
+        const response = await fetch(`https://fakestoreapi.com/products/${productId}` , {
             method: "DELETE" })
-        .then(res=>res.json()) 
-        .then(json=>console.log(json))
-              
-        alert("товар удален успешно!");
-        fetchData(); // Обновление списка товаров
+        .then(res=>res.json()) ;
+        
+        alert(`товар  ${productId} удален успешно!`);
+      
     } catch (error) {
-        console.error ("Ошибка удаления товара", error);   
+        console.error (`Ошибка удаления товара ${productId}`, error);   
     }
 }
-/*
-products_del_button.addEventListener(`click`,(event) => {
-    event.preventDefault();
-    delProduct(productId);
-})   
- */
